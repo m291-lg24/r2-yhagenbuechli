@@ -8,18 +8,11 @@ export const useTaskStore = defineStore('taskStore', {
   }),
 
   getters: {
-    tasksForMatch: (state) => {
-      return (matchId) => {
-        return state.tasks.filter(
-          (task) => String(task.matchId) === String(matchId),
-        )
-      }
-    },
-
     getTasksByMatch: (state) => {
       return (matchId) => {
         return state.tasks.filter(
-          (task) => String(task.matchId) === String(matchId),
+          (task) =>
+            String(task.matchId) === String(matchId),
         )
       }
     },
@@ -27,7 +20,8 @@ export const useTaskStore = defineStore('taskStore', {
 
   actions: {
     loadTasks() {
-      const storedTasks = localStorage.getItem(STORAGE_KEY)
+      const storedTasks =
+        localStorage.getItem(STORAGE_KEY)
 
       if (!storedTasks) {
         this.tasks = []
@@ -72,6 +66,24 @@ export const useTaskStore = defineStore('taskStore', {
       this.saveTasks()
     },
 
+    updateTask(taskId, updatedTask) {
+      const index = this.tasks.findIndex(
+        (task) => task.id === taskId,
+      )
+
+      if (index === -1) {
+        return
+      }
+
+      this.tasks[index] = {
+        ...this.tasks[index],
+        ...updatedTask,
+        id: this.tasks[index].id,
+      }
+
+      this.saveTasks()
+    },
+
     updateTaskStatus(taskId, newStatus) {
       const task = this.tasks.find(
         (task) => task.id === taskId,
@@ -82,6 +94,7 @@ export const useTaskStore = defineStore('taskStore', {
       }
 
       task.status = newStatus
+
       this.saveTasks()
     },
 

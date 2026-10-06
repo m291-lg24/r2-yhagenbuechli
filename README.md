@@ -31,3 +31,99 @@ Dieses Repo ist absichtlich leer. Welche Technik, welche Ordnerstruktur, welche 
 - [ ] Keine Zugangsdaten im Repo; `.env*` steht in `.gitignore`.
 
 Kriterien der Rückmeldung: Dashboard → Bewertung → R2. Tipps zum Arbeiten mit dem Agenten: Handout «KI-Agenten» unter Unterlagen.
+
+
+VON YARA:
+# Matchday Content Planner
+
+Der Matchday Content Planner ist eine Web-App zur Planung und Organisation von Content rund um Fussballspiele.
+
+Die App richtet sich vor allem an Social-Media-Teams, Fotograf:innen, Videograf:innen und Content Creators von Fussballvereinen.
+
+Zu jedem Match können Content-Aufgaben wie zum Beispiel Starting XI, Matchday Graphic, Arrival Reel, Match Photos oder Result Post erstellt und verwaltet werden.
+
+## Funktionen
+
+Die App enthält aktuell folgende Funktionen:
+
+- Dashboard mit Übersicht über den nächsten Matchday
+- Übersicht über alle Matches
+- Suche nach Team oder Stadion
+- Filter nach Club und Monat
+- Matches erstellen
+- Formularvalidierung beim Erstellen eines Matches
+- Detailansicht für jedes Match
+- Content-Aufgaben zu einem Match erstellen
+- Vorlagen für typische Matchday-Aufgaben
+- Plattform, Priorität und verantwortliche Person festlegen
+- Veröffentlichungszeit erfassen
+- Status einer Aufgabe ändern
+- Aufgaben bearbeiten
+- Aufgaben löschen
+- Bestätigung vor dem Löschen
+- automatischer Matchday-Fortschritt
+- lokale Speicherung der Matches und Aufgaben
+- responsive Darstellung für unterschiedliche Bildschirmgrössen
+
+## Ansichten
+
+Die App besteht aus mehreren Ansichten.
+
+### Dashboard
+
+Das Dashboard bietet eine schnelle Übersicht über den Matchday und wichtige Content-Aufgaben.
+
+Unter anderem werden angezeigt:
+
+- nächstes Match
+- offene Aufgaben
+- High-Priority-Aufgaben
+- Aufgaben im Review
+- nächste geplante Content-Aufgaben
+- Fortschritt des nächsten Matchdays
+
+### Matches
+
+Auf der Matchübersicht können alle gespeicherten Spiele angesehen werden.
+
+Die Matches können nach Club und Monat gefiltert und über eine Suche gefunden werden.
+
+Ausserdem können neue Matches über ein Formular erstellt werden.
+
+### Match Detail
+
+Die Matchdetail-Seite ist der wichtigste Arbeitsbereich der App.
+
+Hier können Content-Aufgaben für ein bestimmtes Spiel geplant und verwaltet werden.
+
+Die Aufgaben werden in folgende Status aufgeteilt:
+
+- Open
+- In Progress
+- Review
+- Done
+
+Der Fortschritt des Matchdays wird automatisch anhand der erledigten Aufgaben berechnet.
+
+## Technologien
+
+Das Projekt wurde mit folgenden Technologien umgesetzt:
+
+- Vue 3
+- Vite
+- JavaScript
+- Vue Router
+- Pinia
+- LocalStorage
+- CSS
+
+Es wurden keine zusätzlichen UI-Frameworks verwendet.
+
+## Installation
+
+Voraussetzung ist eine installierte Version von Node.js.
+
+Repository herunterladen oder klonen und anschliessend die Abhängigkeiten installieren:
+
+```bash
+npm install
