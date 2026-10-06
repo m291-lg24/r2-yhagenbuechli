@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 import MatchCard from '../components/MatchCard.vue'
 import { useMatchStore } from '../stores/matchStore'
@@ -9,6 +9,9 @@ const matchStore = useMatchStore()
 const selectedClub = ref('')
 const selectedMonth = ref('')
 const search = ref('')
+
+const visibleCount = ref(8)
+const LOAD_AMOUNT = 8
 
 const clubs = computed(() => {
   const names = matchStore.matches.flatMap((match) => [
@@ -69,18 +72,34 @@ const filteredMatches = computed(() => {
   })
 })
 
-const hasFilters = computed(() => {
-  return (
-    selectedClub.value ||
-    selectedMonth.value ||
-    search.value
-  )
+const visibleMatches = computed(() => {
+  return filteredMatches.value.slice(0, visibleCount.value)
 })
+
+const hasMoreMatches = computed(() => {
+  return visibleCount.value < filteredMatches.value.length
+})
+
+const hasFilters = computed(() => {
+  return selectedClub.value || selectedMonth.value || search.value
+})
+
+watch(
+  [selectedClub, selectedMonth, search],
+  () => {
+    visibleCount.value = LOAD_AMOUNT
+  },
+)
+
+function loadMore() {
+  visibleCount.value += LOAD_AMOUNT
+}
 
 function resetFilters() {
   selectedClub.value = ''
   selectedMonth.value = ''
   search.value = ''
+  visibleCount.value = LOAD_AMOUNT
 }
 </script>
 
@@ -105,7 +124,7 @@ function resetFilters() {
         </span>
 
         <small>
-          von {{ matchStore.matches.length }}
+          Treffer
         </small>
       </div>
     </header>
@@ -181,11 +200,11 @@ function resetFilters() {
     </div>
 
     <div
-      v-if="filteredMatches.length"
+      v-if="visibleMatches.length"
       class="match-grid"
     >
       <MatchCard
-        v-for="(match, index) in filteredMatches"
+        v-for="(match, index) in visibleMatches"
         :key="match.id"
         :match="match"
         :index="index + 1"
@@ -193,7 +212,24 @@ function resetFilters() {
     </div>
 
     <div
-      v-else
+      v-if="hasMoreMatches"
+      class="load-more-wrap"
+    >
+      <button
+        class="load-more-button"
+        type="button"
+        @click="loadMore"
+      >
+        Mehr laden
+
+        <span>
+          {{ visibleMatches.length }} / {{ filteredMatches.length }}
+        </span>
+      </button>
+    </div>
+
+    <div
+      v-if="!filteredMatches.length"
       class="empty-state"
     >
       <p class="eyebrow">
