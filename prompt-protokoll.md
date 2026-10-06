@@ -19,3 +19,11 @@ Newsletter (checkbox). Clientseitige Validierung mit Fehlermeldung unter dem Fel
 **Ergebnis:** …
 **Korrektur:** …
 **Gelernt:** …
+
+## Prompt 1 – Planung der App
+
+Ich habe Codex angewiesen, zuerst die AGENTS.md zu lesen und noch keinen Code zu schreiben.
+
+Codex hat daraufhin die Seiten, Komponenten, Pinia Stores, Datenstruktur, Routing und die Reihenfolge der Umsetzung geplant.
+
+Ich habe den Plan geprüft. Die vorgeschlagene Struktur mit zwei Stores und drei Views ist für den Umfang sinnvoll. Die App soll bewusst ohne Backend und ohne zusätzliche UI-Library umgesetzt werden.
