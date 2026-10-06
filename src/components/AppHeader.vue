@@ -1,33 +1,24 @@
 <template>
-  <aside class="sidebar">
-    <RouterLink class="brand" to="/">
-      <div class="brand-icon">
-        M
-      </div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <RouterLink class="brand" to="/">
+        <span class="brand-mark">M</span>
 
-      <div>
-        <span class="brand-title">Matchday</span>
-        <span class="brand-subtitle">Content Planner</span>
-      </div>
-    </RouterLink>
-
-    <nav class="navigation">
-      <p class="nav-label">Workspace</p>
-
-      <RouterLink to="/">
-        <span class="nav-icon">⌂</span>
-        Dashboard
+        <span class="brand-copy">
+          <strong>Matchday</strong>
+          <small>Content Planner</small>
+        </span>
       </RouterLink>
 
-      <RouterLink to="/matches">
-        <span class="nav-icon">▣</span>
-        Matches
-      </RouterLink>
-    </nav>
+      <nav class="navigation" aria-label="Hauptnavigation">
+        <RouterLink to="/">
+          Dashboard
+        </RouterLink>
 
-    <div class="sidebar-footer">
-      <span>Matchday Content Planner</span>
-      <small>Module 291</small>
+        <RouterLink to="/matches">
+          Matches
+        </RouterLink>
+      </nav>
     </div>
-  </aside>
+  </header>
 </template>

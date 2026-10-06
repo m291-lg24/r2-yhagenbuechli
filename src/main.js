@@ -12,7 +12,7 @@ const pinia = createPinia()
 app.use(pinia)
 app.use(router)
 
-const matchStore = useMatchStore()
+const matchStore = useMatchStore(pinia)
 matchStore.loadMatches()
 
 app.mount('#app')

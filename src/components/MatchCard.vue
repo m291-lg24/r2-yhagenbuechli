@@ -4,14 +4,17 @@ defineProps({
     type: Object,
     required: true,
   },
+
+  index: {
+    type: Number,
+    required: true,
+  },
 })
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('de-CH', {
-    weekday: 'short',
     day: '2-digit',
     month: 'short',
-    year: 'numeric',
   }).format(new Date(date))
 }
 </script>
@@ -21,8 +24,12 @@ function formatDate(date) {
     class="match-card"
     :to="`/matches/${match.id}`"
   >
-    <div class="match-card-header">
-      <span class="competition-badge">
+    <div class="match-card-top">
+      <span class="card-index">
+        {{ String(index).padStart(2, '0') }}
+      </span>
+
+      <span class="competition">
         {{ match.competition }}
       </span>
 
@@ -31,33 +38,36 @@ function formatDate(date) {
       </span>
     </div>
 
-    <div class="match-teams">
-      <div class="team-row">
-        <span class="team-type">HOME</span>
+    <div class="match-card-body">
+      <div class="match-team">
+        <span>Home</span>
         <strong>{{ match.homeTeam }}</strong>
       </div>
 
-      <div class="team-row">
-        <span class="team-type">AWAY</span>
+      <span class="versus">
+        VS
+      </span>
+
+      <div class="match-team match-team-away">
+        <span>Away</span>
         <strong>{{ match.awayTeam }}</strong>
       </div>
     </div>
 
-    <div class="match-info">
+    <div class="match-card-meta">
       <div>
         <span>Kickoff</span>
         <strong>{{ match.kickoffTime }}</strong>
       </div>
 
       <div>
-        <span>Stadion</span>
+        <span>Venue</span>
         <strong>{{ match.stadium }}</strong>
       </div>
-    </div>
 
-    <div class="match-card-footer">
-      <span>Match öffnen</span>
-      <span class="arrow">→</span>
+      <span class="card-arrow">
+        ↗
+      </span>
     </div>
   </RouterLink>
 </template>
